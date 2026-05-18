@@ -6,11 +6,10 @@ TODO
 3. make it in the form of 
 3. finish it by the end of this week (april 11th) <--- dumbass failed to meet the deadlines
 '''
-import json as jay
 import subprocess 
 import re
 import os
-file=open("/home/wowimoe/Documents/sys_report_dummy/repport.json")
+import json
 home = os.path.expanduser("~")
 path = f"{home}/journal_cursor.loc"
 journ=subprocess.Popen(["journalctl",f"--cursor-file={path}","-p","3"],stdout=subprocess.PIPE, text=True)
@@ -42,10 +41,6 @@ for file in  journ.stdout:
     elif "Failed" in file: 
         k=(re.findall(r"\d{2}:\d{2}:\d{2}", file))
         for j in lisp:
-            # for i in k:
-            #     if T11 == None:
-            #         T11= i
-            #     T22 = i
             if j in file:
                 for i in k:
                     if T11 == None:
@@ -66,7 +61,8 @@ t=(
 
     '''''
 )
-with open("/home/wowimoe/Documents/sys_report_dummy/repport.json", "w") as nigga:
-    nigga.write(t)
+with open("/home/wowimoe/Documents/sys_report_dummy/repport.txt", "w") as file:
+    file.write(t)
+    file.close()
 journ.terminate()
 journ.wait()
